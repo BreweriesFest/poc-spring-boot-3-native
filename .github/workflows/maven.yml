@@ -33,11 +33,11 @@ jobs:
       - name: Build
         run: mvn -B -Pnative -DskipTests clean package --file pom.xml
       - name: Build docker image
-        run: mvn -B -Pnative -DskipTests --file pom.xml  spring-boot:build-image
+        run: mvn -B -DskipTests --file pom.xml spring-boot:build-image
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: Push image
-        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/demo:native
+        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/demo:main
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Update dependency graph
