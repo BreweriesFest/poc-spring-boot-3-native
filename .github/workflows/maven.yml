@@ -25,7 +25,7 @@ jobs:
         uses: graalvm/setup-graalvm@v1
         with:
           version: 'latest'
-          java-version: '17'
+          java-version: '19'
           components: 'native-image-llvm-backend '
           github-token: ${{secrets.GITHUB_TOKEN}}
           native-image-job-reports: 'true'
@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: mvn -B -Pnative -DskipTests clean package --file pom.xml
       - name: Build docker image
-        run: mvn -B -Pnative -DskipTests --file pom.xml spring-boot:build-image
+        run: mvn -B -DskipTests --file pom.xml spring-boot:build-image
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: Push image
