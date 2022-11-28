@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: mvn -B -Pnative -DskipTests clean package --file pom.xml
       - name: Build docker image
-        run: mvn -B -Pnative -DskipTests -X spring-boot:build-image --file pom.xml
+        run: mvn -B -Pnative -DskipTests --file pom.xml  spring-boot:build-image docker buildx build --platform linux/arm64/v8 --tag ${{ secrets.DOCKERHUB_USERNAME }}/demo:native
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - name: Push image
