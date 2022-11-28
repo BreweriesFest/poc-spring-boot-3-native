@@ -35,7 +35,7 @@ jobs:
       - name: run
         run: |
           cd target
-          ./demo
+          ls
       - name: Build docker image
         run: mvn -B -DskipTests --file pom.xml spring-boot:build-image
       - name: Login to DockerHub Registry
