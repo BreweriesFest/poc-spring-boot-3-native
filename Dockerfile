@@ -1,4 +1,4 @@
-FROM debian:9-slim
+FROM frolvlad/alpine-glibc
 EXPOSE 8080
 ADD target/demo .
 ENTRYPOINT [ "./demo" ]
